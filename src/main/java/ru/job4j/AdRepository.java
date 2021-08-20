@@ -24,7 +24,7 @@ public class AdRepository implements AutoCloseable {
         List<Advertisement> result = new ArrayList<>();
         try (var session = sf.openSession()) {
             session.getTransaction();
-            Timestamp ts = Timestamp.from(Timestamp.from(Instant.now().minus(1, ChronoUnit.DAYS)).toInstant());
+            Timestamp ts = Timestamp.from(Instant.now().minus(1, ChronoUnit.DAYS));
             result = session.createQuery(
                     "from Advertisement a where a.created > :date")
                     .setParameter("date", ts)
